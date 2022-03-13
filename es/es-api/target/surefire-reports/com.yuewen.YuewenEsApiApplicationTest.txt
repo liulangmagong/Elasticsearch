@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.yuewen.YuewenEsApiApplicationTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.182 s <<< FAILURE! - in com.yuewen.YuewenEsApiApplicationTest
+testCreateIndex(com.yuewen.YuewenEsApiApplicationTest)  Time elapsed: 0.274 s  <<< ERROR!
+org.elasticsearch.ElasticsearchStatusException: Elasticsearch exception [type=resource_already_exists_exception, reason=index [jd_goods/atOEVZkySHGLQyeQDuvHMA] already exists]
+	at com.yuewen.YuewenEsApiApplicationTest.testCreateIndex(YuewenEsApiApplicationTest.java:63)
+
