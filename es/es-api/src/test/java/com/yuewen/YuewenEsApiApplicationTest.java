@@ -57,7 +57,7 @@ public class YuewenEsApiApplicationTest {
     @Test
     public void testCreateIndex() throws IOException {
         // 1. 创建索引请求
-        CreateIndexRequest request = new CreateIndexRequest("jd_goods");
+        CreateIndexRequest request = new CreateIndexRequest("jds_goods");
         // 2. 客户端执行请求
         CreateIndexResponse createIndexResponse =
                  client.indices().create(request, RequestOptions.DEFAULT);
