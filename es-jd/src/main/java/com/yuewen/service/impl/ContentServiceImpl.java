@@ -41,19 +41,24 @@ public class ContentServiceImpl implements ContentService {
         this.restHighLevelClient = restHighLevelClient;
     }
 
+    // 1、解析数据  放入到 es 的索引中
     public Boolean parseContent(String keywords) throws IOException {
+        // 通过关键字进行解析  解析后得到的是一个集合
         List<Content> contents = HtmlParseUtil.parseJD(keywords);
-        // 把查到的数据放入到es中
+        // 把查到的数据放入到es中  然后进行入库操作  批量添加
         BulkRequest request = new BulkRequest();
         request.timeout("2m");
 
         for (Content content : contents) {
+            // 将数据批量的放入到请求中
+            // 这里没有设置ID 那么使用的就是随机 ID
             request.add(
                     new IndexRequest("jd_goods", "_doc")
                             .source(JSON.toJSONString(content), XContentType.JSON)
             );
         }
 
+        // 客户端执行批量插入的方法，将放入到请求中的数据批量放入到ES中
         BulkResponse bulk = restHighLevelClient.bulk(request, RequestOptions.DEFAULT);
         return !bulk.hasFailures();
     }
@@ -81,6 +86,7 @@ public class ContentServiceImpl implements ContentService {
         // 解析结果
         ArrayList<Map<String, Object>> list = new ArrayList<>();
         for (SearchHit documentFields : response.getHits().getHits()) {
+            // 将所有的结果遍历出来，封装到list里边返回出去
             list.add(documentFields.getSourceAsMap());
         }
 

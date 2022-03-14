@@ -24,11 +24,13 @@ public class ContentController {
         this.contentService = contentService;
     }
 
+    // 解析爬取的数据，放入到ES中
     @GetMapping("/parse/{keyword}")
     public Boolean parse(@PathVariable("keyword") String keyword) throws IOException {
         return contentService.parseContent(keyword);
     }
 
+    // 分页查询
     @GetMapping("/search/{keyword}/{pageNo}/{pageSize}")
     public List<Map<String, Object>> searchPage(@PathVariable("keyword") String keyword,
                                                 @PathVariable("pageNo") int pageNo,

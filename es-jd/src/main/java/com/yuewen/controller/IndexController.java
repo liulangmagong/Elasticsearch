@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("Jd")
 public class IndexController {
 
+    // 测试页面，看看是否可以访问到
     @GetMapping("/index")
     public String index(){
         return "index";
